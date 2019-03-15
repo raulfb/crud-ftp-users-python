@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:9%;">
+        <a class="navbar-brand" href="/borrar">Formulario borrar Datos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    {% from "_macro.html" import render_field %}
+    <h2 style="text-align:center;"> Formulario para insertar datos</h2>
+    <div class="container" style="padding-left:490px;">
+	    <div class="row">
+		    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<br>
+			<br>
+
+    			<form name="insert" id="insertform" method="POST">
+				<div class="row control-group" style="text-align:center;">
+				    <div class="form-group col-xs-12 floating-label-form-group controls" style="">
+					    <b>{{ render_field(form.usuario, class='form-control') }}</b>
+					<p class="help-block text-danger"></p>
+				    </div>
+        			</div>
+				<div class="row control-group" style="text-align:center;">
+				    <div class="form-group col-xs-12 floating-label-form-group controls">
+					    <b>{{ render_field(form.clave, class='form-control') }}</b>
+					<p class="help-block text-danger"></p>
+				    </div>
+				</div>
+				<br>
+				<div id="success"></div>
+				<div clas="row">
+					<div class="form-group col-xs-12" style="padding-left:17%;">
+						<button type="submit" class="btn btn-success">Insertar</button>
+    					</div>
+				</div>
+			</div>
+    		</form>
+	    </div>
+	</div>
+    </div>
+{% endblock %}

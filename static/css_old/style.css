@@ -1,0 +1,13 @@
+body{
+background-color:#F5F5F;
+}
+.izquierda{
+display:block;
+float:left;
+padding-left:380px;
+}
+.derecha{
+display:block;
+float:right;
+padding-right:400px;
+}
