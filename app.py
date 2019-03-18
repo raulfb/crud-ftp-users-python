@@ -46,7 +46,6 @@ def borrar():
         usuarios.append(row[1])
         contra.append(row[2])
         id.append(row[0])
-
     Delete_form = forms.DeleteForm(request.form)
     if request.method == 'POST' and Delete_form.validate():
         a= Delete_form.usuario.data,
@@ -56,6 +55,16 @@ def borrar():
 
     return render_template("fborrado.html",title = title, form = Delete_form, usuarios = usuarios, contra = contra, id = id)
 
+@app.route("/borrar/<id>/")
+def borrar_id(id):
+    #print(type(id))
+    id = id,
+    cur = db.cursor()
+    sql = """Delete from accounts where id = %s"""
+    cur.execute(sql, id)
+
+    return render_template("usuarioborrado.html", id = id)
+    
 # Pagina que muestra los usuarios activos
 @app.route("/listar/")
 def listar():

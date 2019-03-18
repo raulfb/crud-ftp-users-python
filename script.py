@@ -7,7 +7,7 @@ db = MySQLdb.connect(host="localhost",    # tu host, usualmente localhost
                      passwd="raul96",  # tu password
                      db="vsftpd")        # el nombre de la base de datos
 
-usuarioprueba="Ramon",
+idprueba=146,
 #b="Ramona"
 
 cur = db.cursor()
@@ -16,7 +16,7 @@ cur = db.cursor()
 #sql_Delete_query = """Delete from accounts where username = '%s')"""
 #cur.execute(sql_Delete_query,a)
 cur = db.cursor()
-sql = """Delete from accounts where username = %s"""
+sql = """Delete from accounts where id = %s"""
 #adr = ("Ramon", )
 
-cur.execute(sql, usuarioprueba)
+cur.execute(sql, idprueba)

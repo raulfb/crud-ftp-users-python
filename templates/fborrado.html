@@ -7,8 +7,8 @@
         </button>
     </nav>
     <h2 style="text-align:center;">Listado de usuarios:</h2>
-    <div style="margin-left:42%;display:block;">
-     <table class="table" style="width:15%;float:left;">
+    <div style="margin-left:30%;display:block;width:25%;">
+     <table class="table" style="width:12%;float:left;">
          <thead>
              <tr>
                  <th scope="col">Usuario</th>
@@ -35,35 +35,12 @@
             </tr>
            {% endfor %}
        </tbody>
-   </table>
-   <p></p>
-   </div>
-  <br>
-    {% from "_macro.html" import render_field %}
-    <h2 style="text-align:center;"> Formulario para borrar datos</h2>
-    <div class="container" style="padding-left:27%;">
-	    <div class="row">
-		    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-			<br>
-			<br>
-			<form name="delete" id="deleteform" method="POST">
-				<div class="row control-group" style="text-align:center;">
-				    <div class="form-group col-xs-12 floating-label-form-group controls">
-					    <b>{{ render_field(form.usuario, class='form-control') }}</b>
-					<p class="help-block text-danger"></p>
-				    </div>
-        			</div>
-
-				<br>
-				<div id="success"></div>
-				<div clas="row">
-					<div class="form-group col-xs-12" style="padding-left:17%;">
-						<button type="submit" class="btn btn-success">Eliminar</button>
-    					</div>
-				</div>
-			</div>
-    		</form>
-	    </div>
-	</div>
+      </table>
     </div>
+    <div style="margin-left:50%;width:40%;float:right;display:block;">
+         {% for identificador in id %}
+            <p><a href="/borrar/{{ identificador }}/">Borrar Usuario </a></p>
+         {% endfor %}
+    </div>  
+  <br>
 {% endblock %}
