@@ -12,9 +12,3 @@ class InsertForm(Form):
             [validators.Required(message = 'Introducce una clave')
             ]
             )
-# Clase para el formulario de borrado de datos
-class DeleteForm(Form):
-    usuario = StringField('usuario',
-            [validators.Required(message = 'Introducce un usuario')
-            ]
-            )

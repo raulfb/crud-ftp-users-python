@@ -34,20 +34,21 @@ def insertar():
     return render_template("finserccion.html",title = title, form = Insert_form)
 
 # Configuracion de la pagina del formulario de borrar datos
-@app.route("/borrar/", methods = ['GET', 'POST'])
+@app.route("/listar/", methods = ['GET', 'POST'])
 def borrar():
     title="Borrar"
-    usuarios=[]
-    contra=[]
-    id=[]
+    datos = []
     cur = db.cursor()
     cur.execute("SELECT * FROM accounts")
     for row in cur.fetchall():
-        usuarios.append(row[1])
-        contra.append(row[2])
-        id.append(row[0])
+        usuario = {}
+        usuario["id"] = row[0]
+        usuario["name"] = row[1]
+        usuario["passw"] = row[2]
+
+        datos.append(usuario)
     
-    return render_template("fborrado.html",title = title, usuarios = usuarios, contra = contra, id = id)
+    return render_template("fborrado.html",title = title, usuarios = datos)
 
 @app.route("/borrar/<id>/")
 def borrar_id(id):
