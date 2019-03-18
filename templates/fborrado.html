@@ -9,22 +9,28 @@
     <h2 style="text-align:center;">Listado de usuarios:</h2>
     <table class="table">
          <thead>
-             <tr>
+            <tr>
                  <th scope="col">Usuario</th>
                  <th scope="col">Contraseña</th>
                  <th scope="col">Borrar</th>
              </tr>
          </thead>
          <tbody>
-             <tr>
+             
                 {% for user in usuarios %}
+                <tr>
                     <th scope="col">{{ user }}</th>
+                </tr>
                 {% endfor %}
                 {% for con in contra %}
+                <tr>
                     <th scope="col">{{ con }}</th>
+                </tr>
                 {% endfor %}
-                {% for identificador in id %}        
+                {% for identificador in id %}
+                <tr>       
                     <th scope="col"><a href="/borrar/{{ identificador }}/">Borrar usuario</a></th>
+                </tr>
                 {% endfor %}
             </tr>
         </tbody>

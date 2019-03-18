@@ -46,14 +46,8 @@ def borrar():
         usuarios.append(row[1])
         contra.append(row[2])
         id.append(row[0])
-    Delete_form = forms.DeleteForm(request.form)
-    if request.method == 'POST' and Delete_form.validate():
-        a= Delete_form.usuario.data,
-        cur = db.cursor()
-        sql = """Delete from accounts where username = %s"""
-        cur.execute(sql, a)
-
-    return render_template("fborrado.html",title = title, form = Delete_form, usuarios = usuarios, contra = contra, id = id)
+    
+    return render_template("fborrado.html",title = title, usuarios = usuarios, contra = contra, id = id)
 
 @app.route("/borrar/<id>/")
 def borrar_id(id):
@@ -64,21 +58,5 @@ def borrar_id(id):
 
     return render_template("usuarioborrado.html", id = id)
     
-# Pagina que muestra los usuarios activos
-@app.route("/listar/")
-def listar():
-    title="Listar"
-    usuarios=[]
-    contra=[]
-    id=[]
-    cur = db.cursor()
-    cur.execute("SELECT * FROM accounts")
-    for row in cur.fetchall():
-        usuarios.append(row[1])
-        contra.append(row[2])
-        id.append(row[0])
-
-    return render_template("listar.html",title = title, usuarios = usuarios, contra = contra, id = id)
-
 if __name__ == "__main__":
     app.run(debug =True)
