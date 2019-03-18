@@ -31,16 +31,25 @@
         <tbody>
             {% for con in contra %}
             <tr>
-               <th scope="col">{{ con }}</th>
+                    <th scope="col">{{ con }}</th>
             </tr>
            {% endfor %}
+           
        </tbody>
       </table>
+      <table class="table" style="width:25%;float:right;">
+            <thead>
+                <tr>
+                    <th scope="col">Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for identificador in id %}
+                <tr>
+                        <th scope="col"><a href="/borrar/{{ identificador }}/">Borrar usuario</a></th>
+                </tr>
+               {% endfor %}
+           </tbody>
+          </table>
     </div>
-    <div style="margin-left:50%;width:40%;float:right;display:block;">
-         {% for identificador in id %}
-            <p><a href="/borrar/{{ identificador }}/">Borrar Usuario </a></p>
-         {% endfor %}
-    </div>  
-  <br>
 {% endblock %}

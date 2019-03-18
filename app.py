@@ -57,7 +57,6 @@ def borrar():
 
 @app.route("/borrar/<id>/")
 def borrar_id(id):
-    #print(type(id))
     id = id,
     cur = db.cursor()
     sql = """Delete from accounts where id = %s"""
