@@ -1,55 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:5%;">
-        <a class="navbar-brand" href="/insertar">Formulario insertar datos</a>
+        <a class="navbar-brand" href="/insertar/">Formulario insertar Usuarios</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
              <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
     <h2 style="text-align:center;">Listado de usuarios:</h2>
-    <div style="margin-left:30%;display:block;width:25%;">
-     <table class="table" style="width:12%;float:left;">
+    <table class="table">
          <thead>
              <tr>
                  <th scope="col">Usuario</th>
+                 <th scope="col">Contraseña</th>
+                 <th scope="col">Borrar</th>
              </tr>
          </thead>
          <tbody>
-             {% for user in usuarios %}
              <tr>
-                <th scope="col">{{ user }}</th>
-             </tr>
-            {% endfor %}
+                {% for user in usuarios %}
+                    <th scope="col">{{ user }}</th>
+                {% endfor %}
+                {% for con in contra %}
+                    <th scope="col">{{ con }}</th>
+                {% endfor %}
+                {% for identificador in id %}        
+                    <th scope="col"><a href="/borrar/{{ identificador }}/">Borrar usuario</a></th>
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
-    <table class="table" style="width:15%;">
-        <thead>
-            <tr>
-                <th scope="col">Contraseña</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for con in contra %}
-            <tr>
-                    <th scope="col">{{ con }}</th>
-            </tr>
-           {% endfor %}
-           
-       </tbody>
-      </table>
-      <table class="table" style="width:25%;float:right;">
-            <thead>
-                <tr>
-                    <th scope="col">Borrar</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for identificador in id %}
-                <tr>
-                        <th scope="col"><a href="/borrar/{{ identificador }}/">Borrar usuario</a></th>
-                </tr>
-               {% endfor %}
-           </tbody>
-          </table>
-    </div>
 {% endblock %}
