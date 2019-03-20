@@ -22,7 +22,7 @@
                 <tr>
                     <td style="text-align:center;">{{ user.name }}</td>
                     <td style="text-align:center;">{{ user.passw }}</td>
-                    <td scope="col" style="text-align:center;"><a id="enlace_borrado" href="/borrar/{{ user.id }}/">X</a></td>
+                    <td scope="col" style="text-align:center;"><a id="enlace_borrado" href="/borrar/{{ user.id }}/" onclick="alert('Usuario eliminado correctamente');">X</a></td>
                 </tr>
                 {% endfor %}
         </tbody>
