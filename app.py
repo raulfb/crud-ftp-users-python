@@ -18,7 +18,7 @@ def index():
     title="Home"
     return render_template("index.html",title = title)
 
-# Configuracion de la pagina del formulario de insertar datos
+# Vista para insertar usuarios
 @app.route("/insertar/", methods = ['GET', 'POST'])
 def insertar():
     title="Insertar"
@@ -33,8 +33,8 @@ def insertar():
 
     return render_template("finserccion.html",title = title, form = Insert_form)
 
-# Configuracion de la pagina del formulario de borrar datos
-@app.route("/listar/", methods = ['GET', 'POST'])
+# Vista para listar usuarios
+@app.route("/listar/", methods = ['GET'])
 def borrar():
     title="Borrar"
     datos = []
@@ -50,7 +50,7 @@ def borrar():
     
     return render_template("fborrado.html",title = title, usuarios = datos)
 
-@app.route("/borrar/<id>/")
+@app.route("/borrar/<id>/", methods = ['POST'])
 def borrar_id(id):
     id = id,
     cur = db.cursor()
