@@ -5,7 +5,25 @@
       <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
       <link rel="icon" type="image/png" href="/static/img/favicon.png">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+      <script>
+        $(document).ready(function(){
+           $(".buser").click(function(){
+               var row = $(this).closest("tr");
+               var userid = row.find("#userid").text();
+
+               console.log(userid);
+               $.ajax({
+                   url:'/borrar/'+userid+'/',
+                   type:'post',
+                   success:function(response) {
+                        alert("Usuario borrado correctamente");                        
+                        row.css("display", "none");                                                             
+                       }
+                   });
+           });
+        });
+     </script>  
    </head>
    <body style="background-color:#F5F5F5;">
 {% block content %}
@@ -23,37 +41,17 @@
             <tr>                
                  <th scope="col" style="text-align:center;">Usuario</th>
                  <th scope="col" style="text-align:center;">Contraseña</th>
-                 <th scope="col" style="text-align:center;">Id</th>
+                 <th scope="col" style="text-align:center;display:none;">Id</th>
                  <th scope="col" style="text-align:center">Borrar</th>
              </tr>
          </thead>
          <tbody> 
                 {% for user in usuarios %}
-                <tr>
-                    
+                <tr> 
                     <td style="text-align:center;">{{ user.name }}</td>
                     <td style="text-align:center;">{{ user.passw }}</td>
-                    <td style="text-align:center;">{{ user.id }}</td>
-                    <td scope="col" style="text-align:center;"><a id="buser" href="#" onclick="alert({{ user.id }})" >X</a></td>
-                    <!-- <td scope="col" style="text-align:center;" class="{{ user.id }}"ud="{{ user.id }}"><a id="buser" href="#" onclick=" $.ajax({url:'/borrar/{{ user.id }}/',type:'post',success:  function (response) {alert('Usuario borrado correctamente');$('.usuario_borr').css('display', 'none');}});" >X</a></td> -->
-                    <!--  $.ajax({url:'/borrar/{{ user.id }}/',type:'post',success:  function (response) {alert("Usuario borrado correctamente");}}); -->
-                    <!-- <script>
-                        $(document).ready(function(){
-                           $("#buser").click(function(){
-                               $.ajax({
-                                   url:'/borrar/{{ user.id }}/',
-                                   type:'post',
-                                   success:function(response) {
-                                        alert("Usuario borrado correctamente");
-                                        if({{ user.id }} = usuario_borr){
-                                            $(".usuario_borr").css("display", "none");
-                                        }
-                                        
-                                       }
-                                   });
-                           });
-                        });
-                     </script> -->
+                    <td id="userid" style="text-align:center;display:none;">{{ user.id }}</td>
+                    <td scope="col" style="text-align:center;"><a class="buser" href="#">X</a></td>
                 </tr>
                 {% endfor %}
         </tbody>
