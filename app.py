@@ -18,6 +18,14 @@ def index():
     title="Home"
     return render_template("index.html",title = title)
 
+
+# Pagina para probar cosas
+@app.route("/pruebas/")
+def pruebas():
+    title="pruebas"
+    return render_template("pruebas.html",title = title)
+
+
 # Vista para insertar usuarios
 @app.route("/insertar/", methods = ['GET', 'POST'])
 def insertar():
@@ -32,6 +40,7 @@ def insertar():
         cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,%s)""",(a,b))
 
     return render_template("finserccion.html",title = title, form = Insert_form)
+
 
 # Vista para listar usuarios
 @app.route("/listar/", methods = ['GET'])
@@ -50,6 +59,8 @@ def borrar():
     
     return render_template("fborrado.html",title = title, usuarios = datos)
 
+
+# Vista para borrar
 @app.route("/borrar/<id>/", methods = ['POST'])
 def borrar_id(id):
     id = id,
