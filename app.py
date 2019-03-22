@@ -12,40 +12,11 @@ db = MySQLdb.connect(host="localhost",
 
 app = Flask(__name__)
 
-# Configuracion de la pagina de inicio
-@app.route("/")
-def index():
-    title="Home"
-    return render_template("index.html",title = title)
-
-
-# Pagina para probar cosas
-@app.route("/pruebas/")
-def pruebas():
-    title="pruebas"
-    return render_template("pruebas.html",title = title)
-
-
-# Vista para insertar usuarios
-@app.route("/insertar/", methods = ['GET', 'POST'])
-def insertar():
-    title="Insertar"
-    Insert_form = forms.InsertForm(request.form)
-    if request.method == 'POST' and Insert_form.validate():
-        a= Insert_form.usuario.data
-        b= Insert_form.clave.data
-        print("Usuario a insertar: " + a)
-        print("Clave a insertar: " + b)
-        cur = db.cursor()
-        cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,%s)""",(a,b))
-
-    return render_template("finserccion.html",title = title, form = Insert_form)
-
 
 # Vista para listar usuarios
-@app.route("/listar/", methods = ['GET'])
+@app.route("/listar/", methods = ['GET', 'POST'])
 def borrar():
-    title="Borrar"
+    title="Usuarios"
     datos = []
     cur = db.cursor()
     cur.execute("SELECT * FROM accounts")
@@ -56,8 +27,17 @@ def borrar():
         usuario["passw"] = row[2]
 
         datos.append(usuario)
-    
-    return render_template("fborrado.html",title = title, usuarios = datos)
+
+    Insert_form = forms.InsertForm(request.form)
+    if request.method == 'POST' and Insert_form.validate():
+        a= Insert_form.usuario.data
+        b= Insert_form.clave.data
+        print("Usuario a insertar: " + a)
+        print("Clave a insertar: " + b)
+        cur = db.cursor()
+        cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,%s)""",(a,b))
+        
+    return render_template("fborrado.html",title = title, usuarios = datos, form = Insert_form)
 
 
 # Vista para borrar
