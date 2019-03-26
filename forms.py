@@ -6,22 +6,13 @@ from wtforms import validators
 # Clase para el formulario de inserccion de datos
 class InsertForm(Form):
     usuario = StringField('usuario',
-            [validators.Required(message = 'Introducce un usuario')
+            [validators.Required(message = 'Completa este campo')
             ]
             )
-#     clave = StringField('clave',
-#             [validators.Required(message = 'Introducce una clave')
-#             ]
-#             )
 
     clave = StringField('clave', [
-        validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords must match')
+        validators.DataRequired('Completa este campo'),
+        validators.EqualTo('confirm', message='Las claves deben de coincidir')
     ])
 
     confirm  = StringField('Repita la clave')
-
-#     clave = StringField('clave',
-#             [validators.Required(message = 'Introducce una clave')
-#             ]
-#             )

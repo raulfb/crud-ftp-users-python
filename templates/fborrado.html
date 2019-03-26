@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <title>{{ title }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <link rel="icon" type="image/png" href="/static/img/favicon.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -22,15 +23,22 @@
                     }
                 });
             });
+
+
             $("a[rel='pop-up']").click(function () {
                 var caracteristicas = "height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0";
                 nueva = window.open(this.href, 'Popup', caracteristicas);
                 return false;
             });
+            
+
+            //    if(document.getElementById("campoclave").value = document.getElementById("campoconfirmar").value ){
+            //         jQuery("#fin").removeAttr("disabled")
+            //    }
+
             // $("#fin").click(function(){
             //    alert("Usuario agregado correctamente");
             // });
-
         });
     </script>
     <style type="text/css">
@@ -94,46 +102,56 @@
                 <div class="modal-body">
                     {% from "_macro.html" import render_field %}
                     <div style="text-align:center;">
-                    <form name="insert" id="insertform" method="POST">
-                        <div class="row control-group" style="text-align:center;padding-left:28%;">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <b>{{ render_field(form.usuario, class='form-control') }}</b>
-                                <p class="help-block text-danger"></p>
+                        <form name="insert" id="insertform" method="POST">
+                            <div class="row control-group" style="text-align:center;padding-left:28%;">
+                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                    <b>{{ render_field(form.usuario, class='form-control') }}</b>
+                                    <p class="help-block text-danger">{{ error }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row control-group" style="text-align:center;padding-left:28%;">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <b>{{ render_field(form.clave, class='form-control') }}</b>
-                                <p class="help-block text-danger"></p>
+                            <div class="row control-group" style="text-align:center;padding-left:28%;">
+                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                    <b id="campoclave">{{ render_field(form.clave, class='form-control') }}</b>
+                                    <script>
+                                            if (document.getElementById("campoclave").value == "hola") {
+                                                console.log("cheguei")
+                                                jQuery("#fin").removeAttr("disabled")
+                                            } else {
+                                                console.log("non chego :(")
+                                            }
+                                        </script>
+                                    <p class="help-block text-danger">{{ error }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row control-group" style="text-align:center;padding-left:28%;">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <b>{{ render_field(form.confirm, class='form-control') }}</b>
-                                <p class="help-block text-danger"></p>
+                           
+                            <div class="row control-group" style="text-align:center;padding-left:28%;">
+                                <div id="campoconfirmar"
+                                    class="form-group col-xs-12 floating-label-form-group controls">
+                                    <b>{{ render_field(form.confirm, class='form-control') }}</b>
+                                    <p class="help-block text-danger">{{ error }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div clas="row">
-                            <div class="form-group col-xs-12" style="style=padding-left:0.5%;">
-                                <button type="submit" id="fin" class="btn btn-success">Insertar</button>
+                            <br>
+                            <div id="success"></div>
+                            <div clas="row">
+                                <div class="form-group col-xs-12" style="style=padding-left:0.5%;">
+                                    <button type="submit" id="fin" class="btn btn-success" disabled>Insertar</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
-
+                </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    {% endblock %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+            </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+            </script>
+        {% endblock %}
 
 </body>
+
 </html>
