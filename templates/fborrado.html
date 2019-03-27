@@ -3,87 +3,48 @@
 
 <head>
     <title>{{ title }}</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <link rel="icon" type="image/png" href="/static/img/favicon.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/css/estilos.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".buser").click(function () {
-                var row = $(this).closest("tr");
-                var userid = row.find("#userid").text();
-
-                $.ajax({
-                    url: '/borrar/' + userid + '/',
-                    type: 'post',
-                    success: function (response) {
-                        alert("Usuario borrado correctamente");
-                        row.css("display", "none");
-                    }
-                });
-            });
-
-
-            $("a[rel='pop-up']").click(function () {
-                var caracteristicas = "height=700,width=800,scrollTo,resizable=1,scrollbars=1,location=0";
-                nueva = window.open(this.href, 'Popup', caracteristicas);
-                return false;
-            });
-            
-
-            //    if(document.getElementById("campoclave").value = document.getElementById("campoconfirmar").value ){
-            //         jQuery("#fin").removeAttr("disabled")
-            //    }
-
-            // $("#fin").click(function(){
-            //    alert("Usuario agregado correctamente");
-            // });
-        });
-    </script>
-    <style type="text/css">
-        .contenedor-modal {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            text-align: right;
-        }
-
-        .contenedor-modal button {
-            position: relative;
-            top: 2%;
-        }
-    </style>
+    <script src="/static/js/codigo.js"></script>
 </head>
 
-<body style="background-color:#F5F5F5;">
+<body>
     {% block content %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:5%;">
+    <noscript>
+        <p>Esta aplicación requiere para su funcionamiento el uso de JavaScript.</p>
+        <p>Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.</p>
+        <p>Muchas gracias.</p>
+    </noscript>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark barra_navegacion">
         <a class="navbar-brand" href="/listar/">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-    <h2 style="text-align:center;">Listado de usuarios</h2>
+    <h2 class="centrado">Listado de usuarios</h2>
     <br>
     <br>
     <table class="table">
         <thead>
             <tr>
-                <th scope="col" style="text-align:center;">Usuario</th>
-                <th scope="col" style="text-align:center;">Contraseña</th>
-                <th scope="col" style="text-align:center;display:none;">Id</th>
-                <th scope="col" style="text-align:center">Borrar</th>
+                <th class="centrado" scope="col">Usuario</th>
+                <th class="centrado" scope="col">Contraseña</th>
+                <th class="centrado clase_oculta" scope="col">Id</th>
+                <th class="centrado" scope="col">Borrar</th>
             </tr>
         </thead>
         <tbody>
             {% for user in usuarios %}
             <tr>
-                <td style="text-align:center;">{{ user.name }}</td>
-                <td style="text-align:center;">{{ user.passw }}</td>
-                <td id="userid" style="text-align:center;display:none;">{{ user.id }}</td>
-                <td scope="col" style="text-align:center;"><a class="buser" href="#">X</a></td>
+                <td class="centrado">{{ user.name }}</td>
+                <td class="centrado">{{ user.passw }}</td>
+                <td class="centrado clase_oculta" id="userid">{{ user.id }}</td>
+                <td class="centrado" scope="col"><a class="buser" href="#">X</a></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -93,7 +54,7 @@
     </div>
     <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content popup_centrado">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -101,41 +62,45 @@
                 </div>
                 <div class="modal-body">
                     {% from "_macro.html" import render_field %}
-                    <div style="text-align:center;">
+                    <div class="centrado">
                         <form name="insert" id="insertform" method="POST">
-                            <div class="row control-group" style="text-align:center;padding-left:28%;">
+
+                            <div class="row control-group filas">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <b>{{ render_field(form.usuario, class='form-control') }}</b>
                                     <p class="help-block text-danger">{{ error }}</p>
                                 </div>
                             </div>
-                            <div class="row control-group" style="text-align:center;padding-left:28%;">
+
+                            <div class="row control-group filas">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <b id="campoclave">{{ render_field(form.clave, class='form-control') }}</b>
-                                    <script>
-                                            if (document.getElementById("campoclave").value == "hola") {
-                                                console.log("cheguei")
-                                                jQuery("#fin").removeAttr("disabled")
-                                            } else {
-                                                console.log("non chego :(")
-                                            }
-                                        </script>
                                     <p class="help-block text-danger">{{ error }}</p>
                                 </div>
                             </div>
-                           
-                            <div class="row control-group" style="text-align:center;padding-left:28%;">
-                                <div id="campoconfirmar"
-                                    class="form-group col-xs-12 floating-label-form-group controls">
-                                    <b>{{ render_field(form.confirm, class='form-control') }}</b>
+
+                            <div class="row control-group filas">
+                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                    <b id="campoconfirmar">{{ render_field(form.confirm, class='form-control') }}</b>
                                     <p class="help-block text-danger">{{ error }}</p>
                                 </div>
                             </div>
                             <br>
+
+                            <script>
+                                if (document.getElementById("campoclave").value === document.getElementById("campoconfirmar").value) {
+                                    console.log("cheguei");
+                                    $("#fin").removeClass("clase_oculta").addClass("act");
+                                } else {
+                                    console.log("non chego :(");
+                                }
+                            </script>
+
                             <div id="success"></div>
                             <div clas="row">
-                                <div class="form-group col-xs-12" style="style=padding-left:0.5%;">
-                                    <button type="submit" id="fin" class="btn btn-success" disabled>Insertar</button>
+                                <div class="form-group col-xs-12 boton">
+                                    <input type="reset" class="btn" value="Reset">
+                                    <button type="submit" id="fin" class="btn btn-success">Insertar</button>  
                                 </div>
                             </div>
                         </form>

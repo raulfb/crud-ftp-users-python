@@ -13,7 +13,7 @@ db = MySQLdb.connect(host="localhost",
 app = Flask(__name__)
 
 
-# Vista para listar usuarios
+# Vista para listar y crear usuarios
 @app.route("/listar/", methods = ['GET', 'POST'])
 def borrar():
     title="Usuarios"
@@ -41,7 +41,7 @@ def borrar():
     return render_template("fborrado.html",title = title, usuarios = datos, form = Insert_form)
 
 
-# Vista para borrar
+# Vista oculta para borrar usuarios
 @app.route("/borrar/<id>/", methods = ['POST'])
 def borrar_id(id):
     id = id,
