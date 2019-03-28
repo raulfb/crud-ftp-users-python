@@ -35,9 +35,8 @@ def borrar():
         print("Usuario a insertar: " + a)
         print("Clave a insertar: " + b)
         cur = db.cursor()
-        
         cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,%s)""",(a,b))
-        
+
     return render_template("fborrado.html",title = title, usuarios = datos, form = Insert_form)
 
 
@@ -52,4 +51,4 @@ def borrar_id(id):
     return render_template("usuarioborrado.html", id = id)
     
 if __name__ == "__main__":
-    app.run(debug =True)
+    app.run(debug=True)

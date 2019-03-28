@@ -18,7 +18,6 @@
         <p>Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.</p>
         <p>Muchas gracias.</p>
     </noscript>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark barra_navegacion">
         <a class="navbar-brand" href="/listar/">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -87,20 +86,11 @@
                             </div>
                             <br>
 
-                            <script>
-                                if (document.getElementById("campoclave").value === document.getElementById("campoconfirmar").value) {
-                                    console.log("cheguei");
-                                    $("#fin").removeClass("clase_oculta").addClass("act");
-                                } else {
-                                    console.log("non chego :(");
-                                }
-                            </script>
-
                             <div id="success"></div>
                             <div clas="row">
                                 <div class="form-group col-xs-12 boton">
                                     <input type="reset" class="btn" value="Reset">
-                                    <button type="submit" id="fin" class="btn btn-success">Insertar</button>  
+                                    <button type="submit" class="clase_oculta" id="fin" >Insertar</button>  
                                 </div>
                             </div>
                         </form>
