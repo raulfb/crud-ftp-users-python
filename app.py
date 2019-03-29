@@ -39,8 +39,6 @@ def borrar():
 
     return render_template("fborrado.html",title = title, usuarios = datos, form = Insert_form)
 
-# Vista para crear usuarios
-
 
 # Vista oculta para borrar usuarios
 @app.route("/borrar/<id>/", methods = ['POST'])
