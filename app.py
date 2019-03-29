@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 
 # Vista para listar y crear usuarios
-@app.route("/listar/", methods = ['GET', 'POST'])
+@app.route("/", methods = ['GET', 'POST'])
 def borrar():
     title="Usuarios"
     datos = []

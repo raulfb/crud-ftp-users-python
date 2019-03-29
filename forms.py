@@ -3,7 +3,7 @@ from wtforms import StringField
 from wtforms import validators
 
 
-# Clase para el formulario de inserccion de datos
+# Clase formulario de inserccion de datos
 class InsertForm(Form):
     usuario = StringField('usuario',
             [validators.Required(message = 'Completa este campo')

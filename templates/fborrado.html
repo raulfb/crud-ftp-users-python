@@ -1,114 +1,111 @@
 <!DOCTYPE HTML>
 <html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel="icon" type="image/png" href="/static/img/favicon.png">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/static/css/estilos.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/static/js/codigo.js"></script>
+    </head>
+    <body>
+        {% block content %}
+            <noscript>
+                <p>Esta aplicación requiere para su funcionamiento el uso de JavaScript.</p>
+                <p>Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.</p>
+                <p>Muchas gracias.</p>
+            </noscript>
 
-<head>
-    <title>{{ title }}</title>
-    <link rel="icon" type="image/png" href="/static/img/favicon.png">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/static/css/estilos.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/static/js/codigo.js"></script>
-</head>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark barra_navegacion">
+                <a class="navbar-brand" href="/">Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
 
-<body>
-    {% block content %}
-    <noscript>
-        <p>Esta aplicación requiere para su funcionamiento el uso de JavaScript.</p>
-        <p>Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.</p>
-        <p>Muchas gracias.</p>
-    </noscript>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark barra_navegacion">
-        <a class="navbar-brand" href="/listar/">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </nav>
-    <h2 class="centrado">Listado de usuarios</h2>
-    <br>
-    <br>
-    <table class="table">
-        <thead>
-            <tr>
-                <th class="centrado" scope="col">Usuario</th>
-                <th class="centrado" scope="col">Contraseña</th>
-                <th class="centrado clase_oculta" scope="col">Id</th>
-                <th class="centrado" scope="col">Borrar</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in usuarios %}
-            <tr>
-                <td class="centrado">{{ user.name }}</td>
-                <td class="centrado">{{ user.passw }}</td>
-                <td class="centrado clase_oculta" id="userid">{{ user.id }}</td>
-                <td class="centrado" scope="col"><a class="buser" href="#">X</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div class="contenedor-modal">
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#miModal">+</button>
-    </div>
-    <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content popup_centrado">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    {% from "_macro.html" import render_field %}
-                    <div class="centrado">
-                        <form name="insert" id="insertform" method="POST">
+            <h2 class="centrado">Listado de usuarios</h2>
+            <br>
+            <br>
 
-                            <div class="row control-group filas">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <b>{{ render_field(form.usuario, class='form-control') }}</b>
-                                    <p class="help-block text-danger">{{ error }}</p>
-                                </div>
-                            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="centrado" scope="col">Usuario</th>
+                        <th class="centrado" scope="col">Contraseña</th>
+                        <th class="centrado clase_oculta" scope="col">Id</th>
+                        <th class="centrado" scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in usuarios %}
+                    <tr>
+                        <td class="centrado" id="nombre">{{ user.name }}</td>
+                        <td class="centrado">{{ user.passw }}</td>
+                        <td class="centrado clase_oculta" id="userid">{{ user.id }}</td>
+                        <td class="centrado" scope="col"><a class="buser" href="#">X</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+             </table>
 
-                            <div class="row control-group filas">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <b id="campoclave">{{ render_field(form.clave, class='form-control') }}</b>
-                                    <p class="help-block text-danger">{{ error }}</p>
-                                </div>
-                            </div>
-
-                            <div class="row control-group filas">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
-                                    <b id="campoconfirmar">{{ render_field(form.confirm, class='form-control') }}</b>
-                                    <p class="help-block text-danger">{{ error }}</p>
-                                </div>
-                            </div>
-                            <br>
-
-                            <div id="success"></div>
-                            <div clas="row">
-                                <div class="form-group col-xs-12 boton">
-                                    <input type="reset" class="btn" value="Reset">
-                                    <button type="submit" class="clase_oculta" id="fin">Insertar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <p class="mensaje_error"> Este usuario ya existe en la base de datos!!</p>
+             <div class="contenedor-modal">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#miModal">+</button>
             </div>
-         
-        </div>
+            <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content popup_centrado">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        {% from "_macro.html" import render_field %}
+                            <div class="centrado">
+                                <form name="insert" id="insertform" method="POST">
+                                    <div class="row control-group filas">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <b>{{ render_field(form.usuario, class='form-control') }}</b>
+                                            <p class="help-block text-danger">{{ error }}</p>
+                                        </div>
+                                    </div>
+                            
+                                    <div class="row control-group filas">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <b id="campoclave">{{ render_field(form.clave, class='form-control') }}</b>
+                                            <p class="help-block text-danger">{{ error }}</p>
+                                        </div>
+                                    </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-            </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-            </script>
+                                    <div class="row control-group filas">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <b id="campoconfirmar">{{ render_field(form.confirm, class='form-control') }}</b>
+                                            <p class="help-block text-danger">{{ error }}</p>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div id="success"></div>
+                                        <div clas="row">
+                                            <div class="form-group col-xs-12 boton">
+                                                <input type="reset" class="btn" value="Reset">
+                                                <button type="submit" class="clase_oculta" id="fin">Insertar</button>
+                                            </div>
+                                        </div>
+                                 </form>
+                                    </div>
+                            </div>
+                             <p class="mensaje_error clase_oculta" id="errorborrado"> Este usuario ya existe.</p>
+                            </div>
+         
+                     </div>
+                </div>
+            </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         {% endblock %}
 
-</body>
+    </body>
 
 </html>
