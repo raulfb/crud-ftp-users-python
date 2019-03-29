@@ -34,11 +34,18 @@ def borrar():
         b= Insert_form.clave.data
         print("Usuario a insertar: " + a)
         print("Clave a insertar: " + b)
-        cur = db.cursor()
-        cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,%s)""",(a,b))
 
-    return render_template("fborrado.html",title = title, usuarios = datos, form = Insert_form)
+    return render_template("fborrado.html",title = title,form = Insert_form,usuarios = datos)
 
+# Vista para insertar usuarios
+@app.route("/insertar/<a>/<b>/", methods = ['POST'])
+def insertar(a,b):
+    a = a,
+    b = b,
+    cur = db.cursor()
+    cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,%s)""",(a,b))
+
+    return render_template("usuariocreado.html", a = a , b = b)
 
 # Vista oculta para borrar usuarios
 @app.route("/borrar/<id>/", methods = ['POST'])
@@ -47,8 +54,8 @@ def borrar_id(id):
     cur = db.cursor()
     sql = """Delete from accounts where id = %s"""
     cur.execute(sql, id)
-
+    
     return render_template("usuarioborrado.html", id = id)
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=5001)
