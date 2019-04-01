@@ -5,6 +5,7 @@
         <link rel="icon" type="image/png" href="/static/img/favicon.png">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/static/css/estilos.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="/static/js/codigo.js"></script>
     </head>
@@ -33,7 +34,9 @@
                         <th class="centrado" scope="col">Usuario</th>
                         <th class="centrado" scope="col">Contraseña</th>
                         <th class="centrado clase_oculta" scope="col">Id</th>
+                        <th class="centrado" scope="col">Editar</th>
                         <th class="centrado" scope="col">Borrar</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +45,9 @@
                         <td class="centrado" id="nombre">{{ user.name }}</td>
                         <td class="centrado">{{ user.passw }}</td>
                         <td class="centrado clase_oculta" id="userid">{{ user.id }}</td>
-                        <td class="centrado" scope="col"><a class="buser" href="#">X</a></td>
+                        <td class="centrado" scope="col"><a class="iduser" href="#" data-toggle="modal" data-target="#modalinserccion"> <i class="fas fa-user-edit"></i></a></td>
+                        <td class="centrado" scope="col"><a class="buser" href="#"><i class="fas fa-user-times"></i></a></td>
+                       
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -101,6 +106,52 @@
                      </div>
                 </div>
             </div>
+            <!-- Modal editar datos -->
+            <div class="modal fade" id="modalinserccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content popup_centrado">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        {% from "_macro.html" import render_field %}
+                            <div class="centrado">
+                                <p>Introducce la contraseña nueva que le quieres asignar al usuario</p>
+                                <form name="modalieditado" id="modform" method="POST">
+                                    <div class="row control-group filas">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <b id="campoclave2">{{ render_field(form.clave, class='form-control') }}</b>
+                                            <p class="help-block text-danger">{{ error }}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row control-group filas">
+                                        <div class="form-group col-xs-12 floating-label-form-group controls">
+                                            <b id="campoconfirmar2">{{ render_field(form.confirm, class='form-control') }}</b>
+                                            <p class="help-block text-danger">{{ error }}</p>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div id="success2"></div>
+                                        <div clas="row">
+                                            <div class="form-group col-xs-12 boton">
+                                                <input type="reset" class="btn" value="Reset">
+                                                <button type="submit" class="clase_oculta"id="fin2">Ejecutar</button>
+                                            </div>
+                                        </div>
+                                 </form>
+                                </div>
+                            </div>
+                            </div>
+         
+                     </div>
+                </div>
+            </div>
+
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

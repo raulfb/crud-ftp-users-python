@@ -43,10 +43,21 @@ def insertar(a,b):
     a = a,
     b = b,
     cur = db.cursor()
-    cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,%s)""",(a,b))
+    cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,PASSWORD(%s))""",(a,b))
 
     return render_template("usuariocreado.html", a = a , b = b)
 
+# Vista para editar la contrasenha del usuario
+@app.route("/modificar/<contra>/<idusuario>/", methods = ['POST'])
+def modificar(contra,idusuario):
+    contra = contra,
+    idusuario = idusuario,
+    cur = db.cursor()
+    query="""UPDATE  accounts SET pass = PASSWORD(%s) WHERE id = %s """   
+    cur.execute(query, (contra, idusuario,))
+
+    return render_template("usuarioeditado.html", contra = contra , idusuario = idusuario)
+    
 # Vista oculta para borrar usuarios
 @app.route("/borrar/<id>/", methods = ['POST'])
 def borrar_id(id):
