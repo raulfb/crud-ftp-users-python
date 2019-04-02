@@ -45,7 +45,7 @@
                         <td class="centrado" id="nombre">{{ user.name }}</td>
                         <td class="centrado">{{ user.passw }}</td>
                         <td class="centrado clase_oculta" id="userid">{{ user.id }}</td>
-                        <td class="centrado" scope="col"><a class="iduser" href="#" data-toggle="modal" data-target="#modalinserccion"> <i class="fas fa-user-edit"></i></a></td>
+                        <td class="centrado" scope="col"><a class="iduser" href="#" data-toggle="modal" data-target="#modalmodificacion"> <i class="fas fa-user-edit"></i></a></td>
                         <td class="centrado" scope="col"><a class="buser" href="#"><i class="fas fa-user-times"></i></a></td>
                        
                     </tr>
@@ -56,6 +56,7 @@
              <div class="contenedor-modal">
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#miModal">+</button>
             </div>
+           <!-- Modal insercción de datos -->
             <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content popup_centrado">
@@ -106,8 +107,8 @@
                      </div>
                 </div>
             </div>
-            <!-- Modal editar datos -->
-            <div class="modal fade" id="modalinserccion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <!-- Modal modificar clave -->
+            <div class="modal fade" id="modalmodificacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content popup_centrado">
                         <div class="modal-header">
@@ -119,17 +120,17 @@
                         {% from "_macro.html" import render_field %}
                             <div class="centrado">
                                 <p>Introducce la contraseña nueva que le quieres asignar al usuario</p>
-                                <form name="modalieditado" id="modform" method="POST">
+                                <form name="modalmodificacion" id="modform" method="POST">
                                     <div class="row control-group filas">
                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                            <b id="campoclave2">{{ render_field(form.clave, class='form-control') }}</b>
+                                            <b id="campoclave2">{{ render_field(form_modificar.clave2, class='form-control') }}</b>
                                             <p class="help-block text-danger">{{ error }}</p>
                                         </div>
                                     </div>
 
                                     <div class="row control-group filas">
                                         <div class="form-group col-xs-12 floating-label-form-group controls">
-                                            <b id="campoconfirmar2">{{ render_field(form.confirm, class='form-control') }}</b>
+                                            <b id="campoconfirmar2">{{ render_field(form_modificar.confirm2, class='form-control') }}</b>
                                             <p class="help-block text-danger">{{ error }}</p>
                                         </div>
                                     </div>
@@ -146,7 +147,6 @@
                                 </div>
                             </div>
                             </div>
-         
                      </div>
                 </div>
             </div>

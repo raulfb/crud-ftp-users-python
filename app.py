@@ -1,5 +1,6 @@
 from flask import Flask, render_template, flash
 import forms
+from forms import *
 from flask import request
 import MySQLdb
 
@@ -20,6 +21,7 @@ def borrar():
     datos = []
     cur = db.cursor()
     cur.execute("SELECT * FROM accounts")
+
     for row in cur.fetchall():
         usuario = {}
         usuario["id"] = row[0]
@@ -28,14 +30,20 @@ def borrar():
 
         datos.append(usuario)
 
+    ModForm = forms.ModForm(request.form)
     Insert_form = forms.InsertForm(request.form)
+
     if request.method == 'POST' and Insert_form.validate():
         a= Insert_form.usuario.data
         b= Insert_form.clave.data
         print("Usuario a insertar: " + a)
         print("Clave a insertar: " + b)
+    
+    
+    if request.method == 'POST' and ModForm.validate():
+        aa = ModForm.clave2.data
 
-    return render_template("fborrado.html",title = title,form = Insert_form,usuarios = datos)
+    return render_template("fborrado.html",title = title,form = Insert_form, form_modificar = ModForm,usuarios = datos)
 
 # Vista para insertar usuarios
 @app.route("/insertar/<a>/<b>/", methods = ['POST'])
@@ -48,10 +56,12 @@ def insertar(a,b):
     return render_template("usuariocreado.html", a = a , b = b)
 
 # Vista para editar la contrasenha del usuario
-@app.route("/modificar/<contra>/<idusuario>/", methods = ['POST'])
+@app.route("/modificar/<contra>/<idusuario>/", methods = ['POST', 'GET'])
 def modificar(contra,idusuario):
+    
     contra = contra,
     idusuario = idusuario,
+    
     cur = db.cursor()
     query="""UPDATE  accounts SET pass = PASSWORD(%s) WHERE id = %s """   
     cur.execute(query, (contra, idusuario,))
