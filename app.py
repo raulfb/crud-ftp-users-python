@@ -1,8 +1,8 @@
 from flask import Flask, render_template, flash
 import forms
-from forms import *
 from flask import request
 import MySQLdb
+
 
 #Datos de conexion con la base de datos
 db = MySQLdb.connect(host="localhost",
@@ -41,9 +41,10 @@ def borrar():
     
     
     if request.method == 'POST' and ModForm.validate():
-        aa = ModForm.clave2.data
+        print("clave modificada a: ")
 
     return render_template("fborrado.html",title = title,form = Insert_form, form_modificar = ModForm,usuarios = datos)
+
 
 # Vista para insertar usuarios
 @app.route("/insertar/<a>/<b>/", methods = ['POST'])
@@ -54,6 +55,7 @@ def insertar(a,b):
     cur.execute("""INSERT INTO accounts (username, pass) VALUES (%s,PASSWORD(%s))""",(a,b))
 
     return render_template("usuariocreado.html", a = a , b = b)
+
 
 # Vista para editar la contrasenha del usuario
 @app.route("/modificar/<contra>/<idusuario>/", methods = ['POST', 'GET'])
@@ -68,6 +70,7 @@ def modificar(contra,idusuario):
 
     return render_template("usuarioeditado.html", contra = contra , idusuario = idusuario)
     
+
 # Vista oculta para borrar usuarios
 @app.route("/borrar/<id>/", methods = ['POST'])
 def borrar_id(id):
@@ -77,6 +80,7 @@ def borrar_id(id):
     cur.execute(sql, id)
     
     return render_template("usuarioborrado.html", id = id)
-    
+
+
 if __name__ == "__main__":
     app.run(debug=True,port=5001)

@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+        <meta charset="utf-8" />
         <title>{{ title }}</title>
         <link rel="icon" type="image/png" href="/static/img/favicon.png">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -45,7 +46,7 @@
                         <td class="centrado" id="nombre">{{ user.name }}</td>
                         <td class="centrado">{{ user.passw }}</td>
                         <td class="centrado clase_oculta" id="userid">{{ user.id }}</td>
-                        <td class="centrado" scope="col"><a class="iduser" href="#" data-toggle="modal" data-target="#modalmodificacion"> <i class="fas fa-user-edit"></i></a></td>
+                        <td class="centrado" scope="col"><a class="iduser open" href="#" data-toggle="modal" data-target="#modalmodificacion"> <i class="fas fa-user-edit"></i></a></td>
                         <td class="centrado" scope="col"><a class="buser" href="#"><i class="fas fa-user-times"></i></a></td>
                        
                     </tr>
@@ -136,6 +137,14 @@
                                     </div>
                                     <br>
 
+                                    <div class="row control-group filas clase_oculta">
+                                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                                <b id="campoidusuario">{{ render_field(form_modificar.idusuario, class='form-control') }}</b>
+                                                <p class="help-block text-danger">{{ error }}</p>
+                                            </div>
+                                        </div>
+
+                                    <br>
                                     <div id="success2"></div>
                                         <div clas="row">
                                             <div class="form-group col-xs-12 boton">
@@ -150,7 +159,7 @@
                      </div>
                 </div>
             </div>
-
+            
 
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

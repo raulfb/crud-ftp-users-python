@@ -20,6 +20,8 @@ class InsertForm(Form):
 
 # Clase formulario de editar contrasenha
 class ModForm(Form):
+    
+    idusuario = StringField('idusuario')
     clave2 = StringField('Clave', [
         validators.DataRequired('Completa este campo'),
         validators.EqualTo('confirm2', message='Las claves deben de coincidir')
