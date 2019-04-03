@@ -1,9 +1,9 @@
 
                                              *** CREACION Y CONFIGURACIÓN DEL ENTORNO VIRTUAL ****
 
-1) Crear entorno virtual: virtualenv -p /usr/bin/python3 my_py3_env
+1) Crear entorno virtual: virtualenv -p /usr/bin/python3 flask
 
-2) Activar entorno virtual: source my_py3_env/bin/activate
+2) Activar entorno virtual: source flask/bin/activate
 
 3) Instalar Flask: pip install flask
 
