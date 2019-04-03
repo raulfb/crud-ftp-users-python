@@ -4,6 +4,8 @@ from flask import request
 import MySQLdb
 
 
+
+
 #Datos de conexion con la base de datos
 db = MySQLdb.connect(host="localhost",
                      user="raul",
@@ -14,7 +16,7 @@ db = MySQLdb.connect(host="localhost",
 app = Flask(__name__)
 
 
-# Vista para listar y crear usuarios
+# Vista para listar usuarios
 @app.route("/", methods = ['GET', 'POST'])
 def borrar():
     title="Usuarios"
@@ -42,11 +44,11 @@ def borrar():
     
     if request.method == 'POST' and ModForm.validate():
         print("clave modificada a: ")
-
+    
     return render_template("fborrado.html",title = title,form = Insert_form, form_modificar = ModForm,usuarios = datos)
 
 
-# Vista para insertar usuarios
+# Vista para crear usuarios
 @app.route("/insertar/<a>/<b>/", methods = ['POST'])
 def insertar(a,b):
     a = a,
@@ -58,7 +60,7 @@ def insertar(a,b):
 
 
 # Vista para editar la contrasenha del usuario
-@app.route("/modificar/<contra>/<idusuario>/", methods = ['POST', 'GET'])
+@app.route("/modificar/<contra>/<idusuario>/", methods = ['POST'])
 def modificar(contra,idusuario):
     
     contra = contra,
@@ -71,7 +73,7 @@ def modificar(contra,idusuario):
     return render_template("usuarioeditado.html", contra = contra , idusuario = idusuario)
     
 
-# Vista oculta para borrar usuarios
+# Vista para borrar usuarios
 @app.route("/borrar/<id>/", methods = ['POST'])
 def borrar_id(id):
     id = id,
@@ -83,4 +85,4 @@ def borrar_id(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=5001)
+    app.run(port=5001)
