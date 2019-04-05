@@ -34,6 +34,13 @@
     <h2 class="centrado">Listado de usuarios</h2>
     <br>
     <br>
+    <!-- Mensajes de borrado de usuarios -->
+    <div id="usuario_eliminado" class="clase_oculta">
+        <h2>El usuario ha sido eliminado correctamente.</h2>
+    </div>
+    <div id="error_eliminar_usuario" class="alert alert-danger centrado clase_oculta" role="alert">
+        <h2>Se ha produccido un error al intentar eliminar el usuario.</h2>
+    </div>
     <!-- Tabla usuarios -->
     <table class="table">
         <thead>
@@ -102,11 +109,14 @@
                             <div id="success"></div>
                             <div clas="row">
                                 <div class="form-group col-xs-12 boton">
-                                    <input type="reset" class="btn" value="Reset">
+                                    <input type="reset" class="btn btn-info" value="Reset">
                                     <button type="submit" class="clase_oculta" id="fin">Insertar</button>
                                 </div>
                             </div>
                         </form>
+                        <div id="usuario_insertado" class="clase_oculta">
+                            <h2>El usuario ha sido creado correctamente.</h2>
+                        </div>
                     </div>
                 </div>
                 <p class="mensaje_error clase_oculta" id="errorborrado"> Este usuario ya existe.</p>
@@ -159,19 +169,24 @@
                             <div id="success2"></div>
                             <div clas="row">
                                 <div class="form-group col-xs-12 boton">
-                                    <input type="reset" class="btn" value="Reset">
+                                    <input type="reset" class="btn btn-info" value="Reset">
                                     <button type="submit" class="clase_oculta" id="fin2">Ejecutar</button>
                                 </div>
                             </div>
                         </form>
+                        <div id="usuario_editado" class="clase_oculta">
+                            <h2>Clave modificada.</h2>
+                        </div>
+                       
                     </div>
                 </div>
-
+                
             </div>
+            
         </div>
+        
     </div>
-
-
+   
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

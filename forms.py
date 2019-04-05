@@ -5,7 +5,7 @@ from wtforms import validators
 
 # Clase formulario de insertar usuarios
 class InsertForm(Form):
-    usuario = StringField('usuario',
+    usuario = StringField('Usuario',
             [validators.Required(message = 'Completa este campo')
             ]
             )
