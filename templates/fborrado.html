@@ -22,6 +22,7 @@
         <p>Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo.</p>
         <p>Muchas gracias.</p>
     </noscript>
+
     <!-- Menu barra de navegacion -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark barra_navegacion">
         <a class="navbar-brand" href="/">Home</a>
@@ -34,6 +35,7 @@
     <h2 class="centrado">Listado de usuarios</h2>
     <br>
     <br>
+
     <!-- Mensajes de borrado de usuarios -->
     <div id="usuario_eliminado" class="clase_oculta">
         <h2>El usuario ha sido eliminado correctamente.</h2>
@@ -41,6 +43,7 @@
     <div id="error_eliminar_usuario" class="alert alert-danger centrado clase_oculta" role="alert">
         <h2>Se ha produccido un error al intentar eliminar el usuario.</h2>
     </div>
+
     <!-- Tabla usuarios -->
     <table class="table">
         <thead>
@@ -71,6 +74,7 @@
     <div class="contenedor-modal">
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#miModal">+</button>
     </div>
+
     <!-- Popup insercción de usuarios -->
     <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -121,10 +125,10 @@
                 </div>
                 <p class="mensaje_error clase_oculta" id="errorborrado"> Este usuario ya existe.</p>
             </div>
-
         </div>
     </div>
     </div>
+    
     <!-- Popup modificacion clave de usuario -->
     <div class="modal fade" id="modalmodificacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
@@ -138,7 +142,7 @@
                 <div class="modal-body">
                     {% from "_macro.html" import render_field %}
                     <div class="centrado">
-                        <p>Introducce la contraseña nueva que le quieres asignar al usuario</p>
+                        <p>Introduzca la contraseña nueva que le quiere asignar al usuario.</p>
                         <form name="modalmodificacion" id="modform" method="POST">
                             <div class="row control-group filas">
                                 <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -176,15 +180,11 @@
                         </form>
                         <div id="usuario_editado" class="clase_oculta">
                             <h2>Clave modificada.</h2>
-                        </div>
-                       
+                        </div>    
                     </div>
                 </div>
-                
             </div>
-            
         </div>
-        
     </div>
    
 
