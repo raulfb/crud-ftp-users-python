@@ -1,0 +1,50 @@
+/* Estilos para el documento*/
+body{
+    background-color:#F5F5F5;
+}
+
+/* Estilos navbar*/
+.barra_navegacion{
+    margin-bottom:5%;   
+}
+
+/* clase centrado */
+.centrado{
+    text-align:center;
+}
+
+/* clase para ocultar elementos */
+.clase_oculta{
+    display: none;
+}
+
+/* Estilos para el popup*/
+.contenedor-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: right;
+}
+
+/* Estilos para el boton del popup*/
+.contenedor-modal button {
+    position: relative;
+    top: 2%;
+}
+
+/* Estilos para las filas de la tabla de usuarios*/
+.filas{
+    text-align:center;
+    padding-left:28%;
+}
+
+/* Estilos para el boton */
+.boton{
+    padding-left:0.5%;
+}
+
+/* Estilos para el mensaje de error */
+.mensaje_error{
+    color:red;
+    text-align: center;
+}
